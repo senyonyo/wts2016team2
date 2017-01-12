@@ -25,7 +25,7 @@ oldest = -1
 
 fp = codecs.open(outfile,"w","utf-8")
 
-tweets = api.list_timeline(owner="",slug='731732517296857089')
+tweets = api.list_timeline(owner="yocto_0821",list_id='731732517296857089')
 if len(tweets) == 0:
     fp.close()
     sys.exit()
