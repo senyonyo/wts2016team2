@@ -4,6 +4,7 @@ import sys
 import tweepy
 import codecs
 
+
 # Twitter OAuth
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.secure = True
