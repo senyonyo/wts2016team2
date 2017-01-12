@@ -1,9 +1,13 @@
-#!/usr/bin/python
+#!/usr/bin/python：
 # -*- coding: utf-8 -*-
 import sys
 import tweepy
 import codecs
 
+consumer_key        = 'l7BzIvdktZtWVZSvOKTQfOcFc'
+consumer_secret     = 'p2yBRcFvWzSOkzeEsOQB5SFSnom18Aqz8IT0AipjbP6fZHtGSD'
+access_token        = '800555565160153088-ZRbyUXU6BztrMkepbNesEMIqeKYQFxw'
+access_token_secret = 'Drc4sOJySWbLwCBzXzdKAcxpeeKlY3oHjjaSLQMvzqvIt'
 
 # Twitter OAuth
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -25,7 +29,7 @@ oldest = -1
 
 fp = codecs.open(outfile,"w","utf-8")
 
-tweets = api.user_timeline(count=count, screen_name=user)
+tweets = api.list_timeline(owner="",slug='731732517296857089')
 if len(tweets) == 0:
     fp.close()
     sys.exit()
@@ -40,7 +44,7 @@ for tweet in tweets:
 
 if oldest != -1:
     while True:
-        tweets = api.user_timeline(count=count, screen_name=user, max_id=oldest-1)
+        tweets = api.list_timeline(count=count, screen_name=user, max_id=oldest-1)
         if len(tweets) == 0:
             break
         for tweet in tweets:
