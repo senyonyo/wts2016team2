@@ -4,10 +4,6 @@ import sys
 import tweepy
 import codecs
 
-consumer_key        = 'l7BzIvdktZtWVZSvOKTQfOcFc'
-consumer_secret     = 'p2yBRcFvWzSOkzeEsOQB5SFSnom18Aqz8IT0AipjbP6fZHtGSD'
-access_token        = '800555565160153088-ZRbyUXU6BztrMkepbNesEMIqeKYQFxw'
-access_token_secret = 'Drc4sOJySWbLwCBzXzdKAcxpeeKlY3oHjjaSLQMvzqvIt'
 
 # Twitter OAuth
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
