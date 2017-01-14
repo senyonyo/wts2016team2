@@ -6,3 +6,6 @@ python ${WD}/crawl_hiyoshi.py 300 ${WD}/tweet_non.txt
 chasen < ${WD}/tweet_non.txt > ${WD}/tweet_non.txt.chasen
 python ${WD}/hindo_sfc.py
 python ${WD}/hindo_non.py
+
+python ${WD}/send.py
+
