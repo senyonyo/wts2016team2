@@ -1,5 +1,6 @@
-#!/usr/bin/python：
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 import sys
 import tweepy
 import codecs
@@ -15,41 +16,29 @@ api = tweepy.API(auth)
 
 # このプログラムの使い方
 # python twitter_crawl_sample.py takapon_jp 300 takapon_jp.txt
-user = sys.argv[1]
-max_count = int(sys.argv[2])
-outfile = sys.argv[3]
+# python crawl.py  300 list_tweet.txt
+max_count = int(sys.argv[1])
+outfile = sys.argv[2]
 
 count = 200
-total = 0
-oldest = -1
+tweets = []
+oldest = None
 
-fp = codecs.open(outfile,"w","utf-8")
+while len(tweets) < max_count:
+    tmp = api.list_timeline("yocto_0821", "keio-univ-sfc-161", count=count, max_id=oldest)
 
-tweets = api.list_timeline(owner="yocto_0821",list_id='731732517296857089')
-if len(tweets) == 0:
-    fp.close()
-    sys.exit()
+    if len(tmp) == 0:
+        break
 
-for tweet in tweets:
-    fp.write("%d\t%s\n" % (total, tweet.text))
-    total += 1
-    oldest = tweet.id
-    if total >= max_count:
-        fp.close()
-        sys.exit()
+    oldest = tmp[-1].id
+    tweets += tmp
 
-if oldest != -1:
-    while True:
-        tweets = api.list_timeline(count=count, screen_name=user, max_id=oldest-1)
-        if len(tweets) == 0:
-            break
-        for tweet in tweets:
-            fp.write("%d\t%s\n" % (total, tweet.text))
-            total += 1
-            oldest = tweet.id
-            if total >= max_count:
-                fp.close()
-                sys.exit()
+with codecs.open(outfile,"w","euc-jp") as fp:
+    for i, tweet in enumerate(tweets[:max_count]):
+        try:
+            fp.write("%d\t%s\n" % (i, tweet.text))
+        except:
+            pass
 
 fp.close()
 
