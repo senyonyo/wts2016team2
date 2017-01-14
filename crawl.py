@@ -31,11 +31,17 @@ if len(mentions) == 0:
     sys.exit()
 
 for tweet in mentions:
-	print tweet.text, tweet.user.screen_name
-
+    print tweet.text, tweet.user.screen_name
+    fp.write("%d\t%s\n" % (total, tweet.text))
+    total += 1
+    oldest = tweet.id
+    if total >= max_count:
+        fp.close()
+        sys.exit()
 if oldest != -1:
     while True:
-        mentions = api.list_timeline(count=count, screen_name=user, max_id=oldest-1)
+        #mentions = api.list_timeline(count=count, screen_name=user, max_id=oldest-1)
+        mentions =  api.list_timeline("yocto_0821","keio-univ-sfc-161",count=5)
         if len(mentions) == 0:
             break
         for tweet in mentions:
@@ -45,6 +51,7 @@ if oldest != -1:
             if total >= max_count:
                 fp.close()
                 sys.exit()
+               
 
 fp.close()
 
