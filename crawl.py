@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 import sys
 import tweepy
 import codecs
@@ -51,6 +52,4 @@ if oldest != -1:
             if total >= max_count:
                 fp.close()
                 sys.exit()
-               
-
 fp.close()
