@@ -1,2 +1,2 @@
-MAILTO=""
-0 */1 * * * /usr/bin/python /home/t16298sk/wts3/send.py
+MAILTO="yawata@sfc.keio.ac.jp"
+10 * * * * /bin/sh /home/yawata/wts/final/bot.sh
