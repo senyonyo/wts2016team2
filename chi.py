@@ -1,5 +1,5 @@
-#!/usr/bin/python                                                               
-# -*- coding: utf-8 -*-                                                         
+#!/usr/bin/python                                                  
+# -*- coding: utf-8 -*-                                            
 import tweepy
 import codecs
 import re
@@ -16,19 +16,25 @@ sfc_chi_dic = {}
 non_chi_dic = {}
 
 
-for line in codecs.open("dict_non.txt","r","euc-jp"):
+for line in codecs.open("/home/yawata/wts/final/dict_non.txt","r","euc-jp"):
     line = line.rstrip()
     lis = line.split(" ")
     non_dic[lis[0]] = int(lis[1])
     if lis[0] not in all_list:
-        all_list.append(lis[0])
+        if re.search(ur'ちんぽ', lis[0]):
+            pass
+        else:
+            all_list.append(lis[0])
 
-for line in codecs.open("dict_sfc.txt","r","euc-jp"):
+for line in codecs.open("/home/yawata/wts/final/dict_sfc.txt","r","euc-jp"):
     line = line.rstrip()
     lis = line.split(" ")
     sfc_dic[lis[0]] = int(lis[1])
     if lis[0] not in all_list:
-        all_list.append(lis[0])
+        if re.search(ur'ちんぽ', lis[0]):
+            pass
+        else:
+            all_list.append(lis[0])
 
 for w in all_list:
 
@@ -54,7 +60,7 @@ for w in all_list:
         if re.search(ur"^[ぁ-んァ-ン]$",w):
             pass
         else:
-            print ("%d %d %f %f %f %s" % (x, y, chi_sv_sfc, chi_sv_             non, chi_square_value, w))
+#            print ("%d %d %f %f %f %s" % (x, y, chi_sv_sfc, chi_sv_non, chi_square_value, w))
             if x > y:
                 sfc_chi_dic[w] = chi_square_value
             elif x < y:
@@ -62,19 +68,19 @@ for w in all_list:
             else:
                 pass
 
-fp = codecs.open('/home/yawata/wts/final/sfc_rank.txt','w', 'euc-jp             ')
+fp = codecs.open('/home/yawata/wts/final/sfc_rank.txt','w', 'euc-jp')
 sfc_rank = []
 non_rank = []
-print "sfc"
-for key in sorted(sfc_chi_dic.items(),key=lambda x:x[1],reverse=Tru             e):
+#print "sfc"
+for key in sorted(sfc_chi_dic.items(),key=lambda x:x[1],reverse=True):
     sfc_rank.append(key[0])
 
 #    print key[0],key[1]
 for i in sfc_rank[0:3]:
     fp.write("sfc: %s\n" % (i))
 
-print "non"
-for key in sorted(non_chi_dic.items(),key=lambda x:x[1],reverse=Tru             e):
+#print "non"
+for key in sorted(non_chi_dic.items(),key=lambda x:x[1],reverse=True):
     non_rank.append(key[0])
 #    print key[0],key[1]
 for i in non_rank[0:3]:
@@ -98,5 +104,6 @@ for i in non_rank[0:3]:
 #                fp.write("sfc: %s\n" % (sfc_word))
 #            else:
 #                fp.write("non: %s\n" % (non_word))
+
 
 

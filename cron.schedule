@@ -1,2 +1,2 @@
 MAILTO="yawata@sfc.keio.ac.jp"
-10 * * * * /bin/sh /home/yawata/wts/final/bot.sh
+34, 04 * * * * /bin/sh /home/yawata/wts/final/bot.sh
