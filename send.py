@@ -27,27 +27,16 @@ for line in codecs.open('/home/yawata/wts/final/sfc_rank.txt','r','euc-jp'):
     line = line.rstrip('\r\n')
     lis = line.split(" ")
     if re.search('sfc:',lis[0]):
-#       eval('sfc_ranking0' + str(i)) == lis[1]
-#       i += 1
         rank_sfc.append(lis[1])
     elif re.search('non:',lis[0]):
-#       eval('hiyoshi_ranking0' + str(j)) == lis[1]
-#       j += 1
         rank_non.append(lis[1])
     else:
         pass
-#for i in rank_sfc:
-#    print i
-#for i in rank_non:
-#    print i
-
 # Mentionの取得                                                    
 # 自分宛のツイートを取得して表示                                   
 mentions = api.mentions_timeline(count=10)
 for tweet in mentions:
     print tweet.text, tweet.user.screen_name
-
-
 
 #ツイートを送信                                                    
 try:
